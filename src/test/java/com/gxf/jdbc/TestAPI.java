@@ -16,9 +16,19 @@ public class TestAPI {
         studentDao = new StudentDao();
     }
 
+    //测试有事务的
     @Test
-    public void testInsert() throws SQLException {
-        Student student = new Student("20171212", "guanxiangfei");
-        studentDao.insert(student);
+    public void testInsertWithTransaction() throws SQLException {
+        Student updateStudent = new Student("20171212", "guanxiangfei111");
+        Student insertStudent = new Student("20171212", "guanxiangfei");
+        studentDao.insertWithTransaction(insertStudent, updateStudent);
+    }
+
+    //测试不带事务的
+    @Test
+    public void testInsertWithoutTransaction() throws SQLException {
+        Student updateStudent = new Student("20171212", "guanxiangfei111");
+        Student insertStudent = new Student("20171212", "guanxiangfei");
+        studentDao.insertWithouotTransaction(insertStudent, updateStudent);
     }
 }
