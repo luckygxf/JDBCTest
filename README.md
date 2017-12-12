@@ -12,3 +12,8 @@
 事务可以保证数据一致性
 ## JUnit
 使用junit单元测试
+## 事务隔离级别设置
+1. 通过connection.setTranactionLevel(Connection.Tran...)  
+2. demo列子，读未提交，可以读到没有提交的变量  
+3. 读已提交，不能读到已提交变量内容  
+4. 隔离级别越强，性能损失越严重
