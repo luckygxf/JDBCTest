@@ -19,4 +19,4 @@
 4. 隔离级别越强，性能损失越严重
 ## 功能
 1. 使用Callabletatment调用mysql存储过程
-2. 也可以使用preparementstatment访问mysql存储过程
+2. 也可以使用preparementstatment访问mysql存储过程 | 存储过程是存放在db server端可执行的sql，因此可以用preparementstatment访问
