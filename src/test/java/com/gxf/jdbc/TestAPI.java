@@ -75,4 +75,16 @@ public class TestAPI {
         System.out.println(student);
     }
 
+    //使用callablestatment访问数据库
+    @Test
+    public void testCallable() throws SQLException {
+        studentDao.callProducer();
+    }
+
+    //使用preparementstatment访问数据库
+    @Test
+    public void testUsePreparementCallProducer(){
+        studentDao.usePreparementCallProducer();
+    }
+
 }

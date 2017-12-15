@@ -1,9 +1,6 @@
 package com.gxf.jdbc;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Created by 58 on 2017/12/12.
@@ -151,5 +148,48 @@ public class StudentDao {
             connection.close();
         }
         return student;
+    }
+
+    /**
+     * 调用存储过程
+     * */
+    public static void callProducer() throws SQLException {
+        Connection connection = DBUtils.getConnection();
+        try{
+            String sql = "call pr_add(?, ?);";
+            CallableStatement callableStatement = connection.prepareCall(sql);
+            //设置存储过程参数 | 参数名 --> 参数
+            callableStatement.setInt("a", 10);
+            callableStatement.setInt("b", 13);
+            ResultSet rs = callableStatement.executeQuery();
+            while(rs.next()){
+                System.out.println(rs.getInt("sum"));
+            }
+            callableStatement.close();
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            connection.close();
+        }
+    }
+
+    /**
+     * 使用Preparmenstatement访问存储过程
+     * */
+    public void usePreparementCallProducer(){
+        Connection connection = DBUtils.getConnection();
+        try{
+            String sql = "call pr_add(?, ?);";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, 13);
+            ps.setInt(2, 3);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                System.out.println("sum = " + rs.getInt("sum"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

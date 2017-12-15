@@ -17,3 +17,6 @@
 2. demo列子，读未提交，可以读到没有提交的变量  
 3. 读已提交，不能读到已提交变量内容  
 4. 隔离级别越强，性能损失越严重
+## 功能
+1. 使用Callabletatment调用mysql存储过程
+2. 也可以使用preparementstatment访问mysql存储过程
