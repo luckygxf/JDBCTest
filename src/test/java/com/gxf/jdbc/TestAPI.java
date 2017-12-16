@@ -17,6 +17,12 @@ public class TestAPI {
         studentDao = new StudentDao();
     }
 
+    //测试resultmetadata
+    @Test
+    public void testuserResultMetaData(){
+        studentDao.userResultMetaData();
+    }
+
     //测试有事务的
     @Test
     public void testInsertWithTransaction() throws SQLException {
