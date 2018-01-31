@@ -1,6 +1,8 @@
 package com.gxf.jdbc;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 58 on 2017/12/12.
@@ -188,6 +190,34 @@ public class StudentDao {
             while(rs.next()){
                 System.out.println("sum = " + rs.getInt("sum"));
             }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 测试resultmetadata
+     * */
+    public void userResultMetaData(){
+        Connection connection = DBUtils.getConnection();
+        try{
+            String sql = "select * from student";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ResultSetMetaData rsm = rs.getMetaData();
+            System.out.println("rms.clomun num: " + rsm.getColumnCount());
+            List<String> columNames = new ArrayList<String>();
+            for(int i = 1; i <= rsm.getColumnCount(); i++){
+                System.out.println(rsm.getColumnName(i));
+                columNames.add(rsm.getColumnName(i));
+            }
+            while(rs.next()){
+                for(int i = 0; i < columNames.size(); i++){
+                    System.out.println(rs.getObject(columNames.get(i)));
+                }
+            }
+            System.out.println(rsm.getColumnClassName(1));
+            System.out.println(rsm.getTableName(1));
         }catch (Exception e){
             e.printStackTrace();
         }
